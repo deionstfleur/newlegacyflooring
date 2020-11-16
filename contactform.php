@@ -1,17 +1,34 @@
 <?php
+$result="";
 
-if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $subject = $_POST['subject'];
-    $mailFrom = $_POST['mail'];
-    $message = $_POST['message'];
+if(isset($_POST['submit'])){
+    require '/PHPMailerAutoload.php';
+    $mail = new PHPMailer;
 
-    $mailTo = "legacyglooringllc20@gmail.com";
-    $headers = "From: ".$mailFrom;
-    $txt = "You have received an email from ".$name;".\n\n".$message;
+    $mail->Host='saintfamilyvisuals@gmail.com';
+    $mail->Port=587;
+    $mail->SMTPAuth=true;
+    $mail->SMTPSecure='tls';
+    $mail->Username='deionstfleur13@gmail.com';
+    $mail->Password="Blessed$2020";
 
-    
-    mail($mailTo, $subject, $txt, $headers);
 
+    $mail->setFrom($_Post['email'],$_POST['name']);
+    $mail->addAddress('saintfamilyvisuals@gmail.com');
+    $mail->addReplyTo($_POST['email'],$_POST['name']);
+
+    $mail->isHTML(true);
+    $mail->Subject='Form Submission: '.$_POST['subject'];
+    $mail->Body='<h1 align=center>Name: '.$_POST['name'].'<br>Email: '.$_POST['email'].'<br>Message: '.$_POST['msg'].'<h1>';
+
+    if(!$mail->send()){
+        $result="Something went wrong. Please try again.";
+
+    }
+    else{
+        $result="Thanks".$_POST['name']."for contacting us";
+    }
 }
+
+?>
 
