@@ -1,34 +1,17 @@
 <?php
-$result="";
+require_once 'swift/lib/swift_required.php';
 
-if(isset($_POST['submit'])){
-    require '/PHPMailerAutoload.php';
-    $mail = new PHPMailer;
+$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+  ->setUsername('deionstfleur13@gmail.com')
+  ->setPassword('Blessed$2020');
 
-    $mail->Host='saintfamilyvisuals@gmail.com';
-    $mail->Port=587;
-    $mail->SMTPAuth=true;
-    $mail->SMTPSecure='tls';
-    $mail->Username='deionstfleur13@gmail.com';
-    $mail->Password="Blessed$2020";
+$mailer = Swift_Mailer::newInstance($transport);
 
+$message = Swift_Message::newInstance('Test Subject')
+  ->setFrom(array('abc@example.com' => 'ABC'))
+  ->setTo(array('xyz@test.com'))
+  ->setBody('This is a test mail.');
 
-    $mail->setFrom($_Post['email'],$_POST['name']);
-    $mail->addAddress('saintfamilyvisuals@gmail.com');
-    $mail->addReplyTo($_POST['email'],$_POST['name']);
-
-    $mail->isHTML(true);
-    $mail->Subject='Form Submission: '.$_POST['subject'];
-    $mail->Body='<h1 align=center>Name: '.$_POST['name'].'<br>Email: '.$_POST['email'].'<br>Message: '.$_POST['msg'].'<h1>';
-
-    if(!$mail->send()){
-        $result="Something went wrong. Please try again.";
-
-    }
-    else{
-        $result="Thanks".$_POST['name']."for contacting us";
-    }
-}
-
+$result = $mailer->send($message);
 ?>
 
