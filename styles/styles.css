@@ -48,7 +48,7 @@ p {
     margin-bottom: 30px;
   }  
   .jumbotron {
-    background: url('/images/121782172_141274194369719_3641958275028868116_o.jpg');
+    background: url('./images/121782172_141274194369719_3641958275028868116_o.jpg');
     color: #fff;
     padding: 100px 25px;
     font-family: Montserrat, sans-serif;
