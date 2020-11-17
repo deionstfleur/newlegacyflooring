@@ -220,7 +220,7 @@
 
  <div class="col-sm-7 slideanim">
   <div class="row">
-    <form class="contact-form" action="contactform.php" method="post">
+    <form name="gform" id="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSd0jOc4VGkQmkSj4-B5bMVY8lGESUxEbyyJI_oyxuRGdkeI9w/viewform?usp=pp_url"  target="hidden_iframe" onsubmit="submitted=true;">
         
         <div class="col-sm-6 form-group">
         
@@ -230,6 +230,8 @@
           <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
         </div>
       </div>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
+
       <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
       <div class="row">
         <div class="col-sm-12 form-group">
@@ -295,6 +297,15 @@ $(document).ready(function(){
   <script>
     AOS.init();
   </script>
+
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">var submitted=false;</script>
+<script type="text/javascript">
+$('#gform').on('submit', function(e) {
+  $('#gform *').fadeOut(2000);
+  $('#gform').prepend('Your submission has been processed...');
+  });
+</script>
 
 </body>
 </html>
