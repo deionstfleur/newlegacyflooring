@@ -1,17 +1,27 @@
 <?php
-require_once 'swift/lib/swift_required.php';
+  $name = $_POST['name'];
+  $visitor_email = $_POST['email'];
+  $message = $_POST['message'];
 
-$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
-  ->setUsername('deionstfleur13@gmail.com')
-  ->setPassword('Blessed$2020');
+  $email_from = 'saintfamilvisuals@gmail.com';
+  
+  $email_subject = "New Form Submission";
 
-$mailer = Swift_Mailer::newInstance($transport);
+  $email_body = "User Name: $name.\n".
+                  "User Email: $visitor_email.\n".
+                    "User Message: $message.\n";
 
-$message = Swift_Message::newInstance('Test Subject')
-  ->setFrom(array('abc@example.com' => 'ABC'))
-  ->setTo(array('xyz@test.com'))
-  ->setBody('This is a test mail.');
 
-$result = $mailer->send($message);
+  $to = "deionstfleur13@gmail.com";
+
+  $headers = "From: $email_from \r\n";
+
+  $headers .= "Reply-To: $visitor_email \r\n";
+
+  mail($to,$email_subject,$email_body,$headers);
+
+  header("Location: index.html");
+
+
 ?>
 
