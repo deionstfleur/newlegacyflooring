@@ -82,6 +82,7 @@ p {
     height: 100%;
     margin-bottom: 10px;
   }
+  
   .carousel-control.right, .carousel-control.left {
     background-image: none;
     color: #ffbf0f;
@@ -331,7 +332,5 @@ p {
    
  }
 
-
-
-
-  
+ 
+ 
