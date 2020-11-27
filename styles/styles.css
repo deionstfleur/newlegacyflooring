@@ -18,6 +18,11 @@ body {
       font-size: 80px;
   }
 
+  h1 {
+    font-size: 25px;
+    
+  }
+
   .col-md-6 img {
    border-radius: 50%;
    height: 100px;
